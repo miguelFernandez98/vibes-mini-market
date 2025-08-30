@@ -1,0 +1,182 @@
+[
+  {
+    "id": "p1",
+    "name": "Guantes GN102",
+    "price": 59.9,
+    "description": "Guantes de alta calidad para protección y comodidad.",
+    "isAvailable": true,
+    "category": "gloves",
+    "image": "https://m.media-amazon.com/images/I/81+muGCue4S._AC_SX679_.jpg"
+  },
+  {
+    "id": "p2",
+    "name": "Casco CS433",
+    "price": 79.9,
+    "description": "Casco resistente y ligero para máxima seguridad.",
+    "isAvailable": false,
+    "category": "headgear",
+    "image": "https://m.media-amazon.com/images/I/81MEIThtaPL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p3",
+    "name": "Bolsa AC990",
+    "price": 24.5,
+    "description": "Bolsa espaciosa y duradera para todas tus necesidades.",
+    "isAvailable": true,
+    "category": "bag",
+    "image": "https://m.media-amazon.com/images/I/71TH-cFQQhL._AC_SX679_.jpg"
+  },
+  {
+    "id": "p4",
+    "name": "Pelota de Fútbol PF101",
+    "price": 39.99,
+    "description": "Pelota de fútbol profesional para entrenamientos y partidos.",
+    "isAvailable": true,
+    "category": "ball",
+    "image": "https://m.media-amazon.com/images/I/51Zd5MYt-CL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p5",
+    "name": "Raqueta de Tenis RT202",
+    "price": 89.99,
+    "description": "Raqueta ligera y resistente para jugadores de todos los niveles.",
+    "isAvailable": true,
+    "category": "tennis",
+    "image": "https://m.media-amazon.com/images/I/71NjVS5BeEL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p6",
+    "name": "Cuerda para Saltar CS303",
+    "price": 15.99,
+    "description": "Cuerda ajustable para entrenamiento cardiovascular.",
+    "isAvailable": false,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/61iRMejcYxL._AC_SX679_.jpg"
+  },
+  {
+    "id": "p7",
+    "name": "Botella Deportiva BD404",
+    "price": 12.5,
+    "description": "Botella de agua reutilizable y libre de BPA.",
+    "isAvailable": true,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/71mL0rwKWNL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p8",
+    "name": "Mochila Deportiva MD505",
+    "price": 34.99,
+    "description": "Mochila resistente y cómoda para llevar tu equipo.",
+    "isAvailable": false,
+    "category": "bag",
+    "image": "https://m.media-amazon.com/images/I/61zMfXiITGL._AC_SX679_.jpg"
+  },
+  {
+    "id": "p9",
+    "name": "Shorts SH606",
+    "price": 19.99,
+    "description": "Shorts deportivos transpirables para entrenamiento.",
+    "isAvailable": true,
+    "category": "clothing",
+    "image": "https://m.media-amazon.com/images/I/71RiVTaEK-L._AC_SX679_.jpg"
+  },
+  {
+    "id": "p10",
+    "name": "Camiseta Deportiva CD707",
+    "price": 22.99,
+    "description": "Camiseta de secado rápido para actividades deportivas.",
+    "isAvailable": true,
+    "category": "clothing",
+    "image": "https://m.media-amazon.com/images/I/51A9+y8Dt3L._AC_SY741_.jpg"
+  },
+  {
+    "id": "p11",
+    "name": "Pesas Ajustables PA808",
+    "price": 49.99,
+    "description": "Pesas ajustables para entrenamiento de fuerza.",
+    "isAvailable": true,
+    "category": "weights",
+    "image": "https://m.media-amazon.com/images/I/719RDOCINqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p12",
+    "name": "Banda Elástica BE909",
+    "price": 9.99,
+    "description": "Banda elástica para ejercicios de resistencia.",
+    "isAvailable": false,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/71S4-NjoTDL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p13",
+    "name": "Gorra Deportiva GD010",
+    "price": 14.99,
+    "description": "Gorra ligera y transpirable para actividades al aire libre.",
+    "isAvailable": false,
+    "category": "clothing",
+    "image": "https://m.media-amazon.com/images/I/51NgnuspmgL._AC_SX679_.jpg"
+  },
+  {
+    "id": "p14",
+    "name": "Toalla Deportiva TD111",
+    "price": 8.99,
+    "description": "Toalla absorbente y compacta para gimnasio.",
+    "isAvailable": true,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/81s5XepQd+L._AC_SY300_SX300_.jpg"
+  },
+  {
+    "id": "p15",
+    "name": "Balón de Baloncesto BB212",
+    "price": 29.99,
+    "description": "Balón de baloncesto profesional para entrenamiento.",
+    "isAvailable": true,
+    "category": "ball",
+    "image": "https://m.media-amazon.com/images/I/71kq0nZ9kHL._AC_SX679_.jpg"
+  },
+  {
+    "id": "p16",
+    "name": "Protector Bucal PB313",
+    "price": 6.99,
+    "description": "Protector bucal para deportes de contacto.",
+    "isAvailable": true,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/41e1ElucUIL._SX300_SY300_QL70_FMwebp_.jpg"
+  },
+  {
+    "id": "p17",
+    "name": "Rodillera Deportiva RD414",
+    "price": 17.99,
+    "description": "Rodillera de compresión para protección y soporte.",
+    "isAvailable": true,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/813Q544+-iL._AC_SY300_SX300_.jpg"
+  },
+  {
+    "id": "p18",
+    "name": "Calcetas Deportivas CD515",
+    "price": 7.99,
+    "description": "Calcetas cómodas y transpirables para deporte.",
+    "isAvailable": true,
+    "category": "clothing",
+    "image": "https://m.media-amazon.com/images/I/51PIZdOK19L._AC_SX679_.jpg"
+  },
+  {
+    "id": "p19",
+    "name": "Cinturón de Entrenamiento CE616",
+    "price": 21.99,
+    "description": "Cinturón para levantamiento de pesas y soporte lumbar.",
+    "isAvailable": true,
+    "category": "accessory",
+    "image": "https://m.media-amazon.com/images/I/91+ELSOw-qL._AC_SY300_SX300_.jpg"
+  },
+  {
+    "id": "p20",
+    "name": "Guantes de Ciclismo GC717",
+    "price": 18.99,
+    "description": "Guantes acolchados para ciclismo y deportes al aire libre.",
+    "isAvailable": false,
+    "category": "gloves",
+    "image": "https://m.media-amazon.com/images/I/81CiQgGt35L.__AC_SY300_SX300_QL70_FMwebp_.jpg"
+  }
+]
