@@ -27,7 +27,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       }`}
     >
       {product.isAvailable ? (
-        <Link href={`/products/${product.id}`} passHref>
+        <Link
+          href={`/products/${product.id}`}
+          passHref
+          aria-label={`Ver detalles de ${product.name}`}
+        >
           {CardContent}
         </Link>
       ) : (

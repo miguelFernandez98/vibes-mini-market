@@ -13,3 +13,16 @@ export interface ProductById {
     id: string;
   };
 }
+export interface ProductsSearchParams {
+  search?: string;
+  sort?: string;
+  order?: string;
+  page?: string;
+  limit?: string;
+  available?: string;
+}
+
+export interface SelectOption {
+  value: string;
+  label: string;
+}
