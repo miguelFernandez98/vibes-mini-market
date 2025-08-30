@@ -49,7 +49,7 @@
     "name": "Cuerda para Saltar CS303",
     "price": 15.99,
     "description": "Cuerda ajustable para entrenamiento cardiovascular.",
-    "isAvailable": true,
+    "isAvailable": false,
     "category": "accessory",
     "image": "https://m.media-amazon.com/images/I/61iRMejcYxL._AC_SX679_.jpg"
   },
@@ -67,7 +67,7 @@
     "name": "Mochila Deportiva MD505",
     "price": 34.99,
     "description": "Mochila resistente y cómoda para llevar tu equipo.",
-    "isAvailable": true,
+    "isAvailable": false,
     "category": "bag",
     "image": "https://m.media-amazon.com/images/I/61zMfXiITGL._AC_SX679_.jpg"
   },
@@ -103,7 +103,7 @@
     "name": "Banda Elástica BE909",
     "price": 9.99,
     "description": "Banda elástica para ejercicios de resistencia.",
-    "isAvailable": true,
+    "isAvailable": false,
     "category": "accessory",
     "image": "https://m.media-amazon.com/images/I/71S4-NjoTDL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
   },
@@ -112,7 +112,7 @@
     "name": "Gorra Deportiva GD010",
     "price": 14.99,
     "description": "Gorra ligera y transpirable para actividades al aire libre.",
-    "isAvailable": true,
+    "isAvailable": false,
     "category": "clothing",
     "image": "https://m.media-amazon.com/images/I/51NgnuspmgL._AC_SX679_.jpg"
   },
@@ -175,7 +175,7 @@
     "name": "Guantes de Ciclismo GC717",
     "price": 18.99,
     "description": "Guantes acolchados para ciclismo y deportes al aire libre.",
-    "isAvailable": true,
+    "isAvailable": false,
     "category": "gloves",
     "image": "https://m.media-amazon.com/images/I/81CiQgGt35L.__AC_SY300_SX300_QL70_FMwebp_.jpg"
   }

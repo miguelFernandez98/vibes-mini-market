@@ -17,7 +17,7 @@ export default async function ProductDetailsPage({ params }: ProductById) {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section className="min-h-screen flex items-center justify-center pt-10">
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 rounded-xl border shadow-lg bg-white p-8 max-w-3xl w-full">
         <article className="flex-shrink-0 flex justify-center items-center">
           <Image
