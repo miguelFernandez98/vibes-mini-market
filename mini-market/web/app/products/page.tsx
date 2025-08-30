@@ -17,15 +17,29 @@ function Pagination({ page, limit, hasNext, query }: PaginationProps) {
   return (
     <div className="flex justify-center items-center gap-4 mt-8">
       {page > 1 ? (
-        <a href={`?${removePageLimit(query)}&page=${page - 1}&limit=${limit}`} className="px-4 py-2 bg-white text-[#020618] rounded hover:bg-gray-300">Anterior</a>
+        <a
+          href={`?${removePageLimit(query)}&page=${page - 1}&limit=${limit}`}
+          className="px-4 py-2 bg-white text-[#020618] rounded hover:bg-gray-300"
+        >
+          Anterior
+        </a>
       ) : (
-        <span className="px-4 py-2 bg-gray-100 rounded text-gray-400 cursor-not-allowed">Anterior</span>
+        <span className="px-4 py-2 bg-gray-100 rounded text-gray-400 cursor-not-allowed">
+          Anterior
+        </span>
       )}
       <span>Página {page}</span>
       {hasNext ? (
-        <a href={`?${removePageLimit(query)}&page=${page + 1}&limit=${limit}`} className="px-4 py-2 bg-white text-[#020618] rounded hover:bg-gray-300">Siguiente</a>
+        <a
+          href={`?${removePageLimit(query)}&page=${page + 1}&limit=${limit}`}
+          className="px-4 py-2 bg-white text-[#020618] rounded hover:bg-gray-300"
+        >
+          Siguiente
+        </a>
       ) : (
-        <span className="px-4 py-2 bg-gray-100 rounded text-gray-400 cursor-not-allowed">Siguiente</span>
+        <span className="px-4 py-2 bg-gray-100 rounded text-gray-400 cursor-not-allowed">
+          Siguiente
+        </span>
       )}
     </div>
   );
@@ -38,15 +52,22 @@ interface ProductsPageProps {
 export default async function ProductsPage({
   searchParams,
 }: ProductsPageProps) {
+  const {
+    page: pageParam,
+    limit: limitParam,
+    ...restParams
+  } = searchParams || {};
+
+  const page = pageParam ? parseInt(pageParam) : 1;
+  const limit = limitParam ? parseInt(limitParam) : 10;
+
   const params: Record<string, string> = {};
-  Object.entries(searchParams || {}).forEach(([key, value]) => {
+  Object.entries(restParams).forEach(([key, value]) => {
     if (typeof value === "string" && value !== "") {
       params[key] = value;
     }
   });
   const query = new URLSearchParams(params).toString();
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const limit = searchParams.limit ? parseInt(searchParams.limit) : 10;
   const products: Product[] =
     (await getProducts(query + `&page=${page}&limit=${limit}`)) || [];
 
@@ -66,7 +87,12 @@ export default async function ProductsPage({
           </div>
         )}
       </div>
-      <Pagination page={page} limit={limit} hasNext={products.length === limit} query={query} />
+      <Pagination
+        page={page}
+        limit={limit}
+        hasNext={products.length === limit}
+        query={query}
+      />
     </div>
   );
 }
