@@ -1,60 +1,67 @@
 # vibes-mini-market
 ## Mini market deportivo
-**Prueba tecnica**
+**Prueba técnica**
 
 ## 📖 Descripción
 
-**vibes-mini-market** Es un proyecto desarrollado con la intencion de cumplir los criterios requeridos en la asignacion de la prueba el cual solicitba un proyecto fullstack
-donde se pudiera vizualizar productos y sus detalles a su vez filtrarlos y poder hacer busquedas avanzadas:
+**vibes-mini-market** Es un proyecto desarrollado con la intención de cumplir los criterios requeridos en la asignación de la prueba. El proyecto solicitaba una aplicación *fullstack* donde se pudiera visualizar productos y sus detalles, así como filtrarlos y realizar búsquedas avanzadas.
 
-- **Nextsjs**: Como entorno de ejecución del frontend.
-- **TypeScript**: Para aprovechar la tipificación estática y mejorar la escalabilidad del código.
-- **Express**: Como el medio para estructurar el backend.
+Para lograrlo, se utilizó el siguiente stack tecnológico:
 
-## El proyecto cumple con lo siguente: 
+* **Next.js**: Como entorno de ejecución para el frontend.
+* **TypeScript**: Para aprovechar el tipado estático y mejorar la escalabilidad del código.
+* **Express**: Como el medio para estructurar el backend.
+
+---
+
+## El proyecto cumple con los siguientes requerimientos:
 
 ✅ Implementar una API con Express (TS) que devuelva productos (listado y detalle).
 
-✅ Implementar páginas en Next.js (TS): /products (lista) y /products/[id] (detalle).
+✅ Implementar páginas en Next.js (TS): `/products` (lista) y `/products/[id]` (detalle).
 
 ✅ Crear un algoritmo utilitario en TS para obtener los productos más baratos disponibles.
 
-✅ Maquetar UI básica según mock textual (cards y detalle).
+✅ Maquetar una UI básica según el *mock* textual (cards y detalle).
 
-✅ Usar Git y compartirnos el repositorio para la Evaluación.
+✅ Usar Git y compartir el repositorio para la evaluación.
 
 ✅ Documentar decisiones y pendientes en un README propio.
 
-## El proyecto no cumple o se puede mejorar en: 
+---
 
-❌ Opcional: persistencia en MongoDB y/o tests unitarios.
-- Realmente no se implemento la base de datos por falta de tiempo pero queda como un issues a futuro.
-- tambien se puede mejorar la ui aun mas implementando mejoras de ux en el caso de que un usuario quiera utilizar la aplicacion
-- simplificar aun mas el codigo mejorando su entendimiento y facilidad de modificacion
+## El proyecto no cumple o se puede mejorar en:
+
+❌ **Opcional: persistencia en MongoDB y/o tests unitarios.**
+* No se implementó una base de datos por falta de tiempo, pero se considera una mejora a futuro.
+* La interfaz de usuario puede mejorarse aún más, implementando mejoras de UX para que la aplicación sea más intuitiva.
+* El código puede simplificarse para mejorar su claridad y facilidad de modificación.
+
+---
 
 ## ⚙️ Instalación
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/[tu-usuario]/vibes-mini-market.git
+git clone [https://github.com/](https://github.com/)[tu-usuario]/vibes-mini-market.git
 
-# 4. Acceder a la carpeta correspondiente sea para el web o la api
-1.- cd mini-market
-2.- cd api
-and
-1.- cd mini-market
-2.- cd web
+# 2. Acceder a la carpeta del proyecto
+cd vibes-mini-market
 
-# 3. Instalar dependencias
+# 3. Acceder a la carpeta correspondiente (web o api)
+cd api
+# o
+cd web
+
+# 4. Instalar las dependencias
 npm install
-or
+# o
 pnpm install
 
-# 4. Configurar las variables de entorno usando de base el .env.example que se encuentra en ambas carpetas el correspondiente  
+# 5. Configurar las variables de entorno
+# Usa el archivo `.env.example` en cada una de las carpetas como base.
 
-# 5. Ejecutar en desarrollo (con ts-node)
+# 6. Ejecutar en desarrollo
 npm run dev
-or
+# o
 pnpm run dev
-```
-
