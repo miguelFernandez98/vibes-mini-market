@@ -1,60 +1,87 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
+import { Star, ShoppingCart } from "lucide-react";
 import { Product } from "../../shared/interfaces/products";
 
 interface ProductCardProps {
   product: Product;
+  index?: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const CardContent = (
-    <div className="relative w-full aspect-square flex justify-center items-center">
-      <Image
-        className="max-h-[200px] object-contain"
-        priority
-        src={product.image}
-        alt={product.name}
-        width={200}
-        height={200}
-      />
+function StarRating({ rating }: { rating: { rate: number; count: number } }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-0.5">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            className={`w-3.5 h-3.5 ${
+              star <= Math.round(rating.rate)
+                ? "fill-amber-400 text-amber-400"
+                : "fill-gray-200 text-gray-200"
+            }`}
+          />
+        ))}
+      </div>
+      <span className="text-xs text-gray-400 font-medium">
+        ({rating.count})
+      </span>
     </div>
   );
+}
 
+const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) => {
   return (
-    <section
-      className={`bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-250 ${
-        product.isAvailable ? "hover:scale-105" : "cursor-not-allowed"
-      }`}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
     >
-      {product.isAvailable ? (
-        <Link
-          href={`/products/${product.id}`}
-          passHref
-          aria-label={`Ver detalles de ${product.name}`}
-        >
-          {CardContent}
-        </Link>
-      ) : (
-        <div className="pointer-events-none ">{CardContent}</div>
-      )}
-      <article className="p-4 flex flex-col items-start border-t border-gray-200 drop-shadow-sm bg-white/70">
-        <h3 className="text-[16px] font-semibold text-[#020618] line-clamp-2">
-          {product.name}
-        </h3>
-        <p className="text-[14px] text-[#020618]/80 mt-1">
-          ${product.price.toFixed(2)}
-        </p>
-        <div
-          className={`px-5 py-1.5 rounded-full text-xs font-medium self-end ${
-            product.isAvailable
-              ? "bg-green-200 text-green-800"
-              : "bg-gray-200 text-gray-600"
-          }`}
-        >
-          {product.isAvailable ? "En stock" : "Sin stock"}
+      <Link href={`/products/${product.id}`} className="block group">
+        <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+          {/* Image */}
+          <div className="relative aspect-square bg-gradient-to-b from-gray-50 to-white p-6 flex items-center justify-center overflow-hidden">
+            <Image
+              src={product.image}
+              alt={product.title}
+              width={200}
+              height={200}
+              className="object-contain w-full h-full max-h-[180px] group-hover:scale-110 transition-transform duration-500 ease-out"
+            />
+            {/* Category badge */}
+            <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#00703C]/10 text-[#00703C] text-[10px] font-bold rounded-lg uppercase tracking-wider">
+              {product.category}
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="p-4 pt-3 border-t border-gray-50">
+            <h3 className="text-[13px] font-semibold text-gray-900 line-clamp-2 mb-2 min-h-[2.2rem] group-hover:text-[#00703C] transition-colors leading-snug">
+              {product.title}
+            </h3>
+
+            <StarRating rating={product.rating} />
+
+            <div className="flex items-end justify-between mt-3">
+              <div>
+                <span className="text-xl font-black text-[#00703C]">
+                  ${product.price.toFixed(2)}
+                </span>
+              </div>
+              <button
+                className="p-2 bg-[#00703C]/10 text-[#00703C] rounded-xl hover:bg-[#00703C] hover:text-white transition-all duration-200 group/btn"
+                aria-label="Agregar al carrito"
+              >
+                <ShoppingCart className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
-      </article>
-    </section>
+      </Link>
+    </motion.div>
   );
 };
 
