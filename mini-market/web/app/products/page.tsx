@@ -2,6 +2,18 @@ import { getProducts } from "@/lib/products-api";
 import { Product } from "../../../shared/interfaces/products";
 import ProductsClient from "./ProductsClient";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Productos",
+  description:
+    "Explora nuestro catalogo completo de productos. Electronics, ropa, joyeria y mas con envio gratis en compras mayores a $50.",
+  openGraph: {
+    title: "Productos | Mig Market",
+    description:
+      "Explora nuestro catalogo completo de productos. Electronics, ropa, joyeria y mas con envio gratis.",
+  },
+};
 
 export default async function ProductsPage() {
   let products: Product[] = [];
