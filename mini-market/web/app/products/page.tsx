@@ -1,5 +1,5 @@
 import { getProducts } from "@/lib/products-api";
-import { Product } from "../../../shared/interfaces/products";
+import { Product } from "@/types/products";
 import ProductsClient from "./ProductsClient";
 import { Suspense } from "react";
 import type { Metadata } from "next";

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
 import ProductFilters from "@/components/ProductFilters";
-import { Product } from "../../../shared/interfaces/products";
+import { Product } from "@/types/products";
 import { Package, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 

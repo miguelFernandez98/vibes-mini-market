@@ -3,7 +3,7 @@
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
-import { Product } from "../../shared/interfaces/products";
+import { Product } from "@/types/products";
 
 interface ProductFiltersProps {
   products: Product[];
