@@ -1,21 +1,26 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState, useRef, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
-import { SelectOption } from "../../shared/interfaces/products";
+import { Product } from "../../shared/interfaces/products";
 
-const sortOptions: SelectOption[] = [
+interface ProductFiltersProps {
+  products: Product[];
+  onFilter: (filtered: Product[]) => void;
+}
+
+const sortOptions = [
   { value: "name", label: "Nombre" },
   { value: "price", label: "Precio" },
 ];
 
-const orderOptions: SelectOption[] = [
+const orderOptions = [
   { value: "asc", label: "Menor a Mayor" },
   { value: "desc", label: "Mayor a Menor" },
 ];
 
-const categoryOptions: SelectOption[] = [
+const categoryOptions = [
   { value: "", label: "Todas" },
   { value: "electronics", label: "Electronics" },
   { value: "jewelery", label: "Jewelery" },
@@ -23,7 +28,7 @@ const categoryOptions: SelectOption[] = [
   { value: "women's clothing", label: "Women's Clothing" },
 ];
 
-export default function ProductFilters() {
+export default function ProductFilters({ products, onFilter }: ProductFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -44,18 +49,56 @@ export default function ProductFilters() {
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
-  const updateParams = useCallback(
+  const applyFilters = useCallback(
+    (search: string, category: string, sort: string, order: string) => {
+      let filtered = [...products];
+
+      if (search) {
+        const s = search.toLowerCase();
+        filtered = filtered.filter(
+          (p) =>
+            p.title.toLowerCase().includes(s) ||
+            p.description.toLowerCase().includes(s) ||
+            p.category.toLowerCase().includes(s)
+        );
+      }
+
+      if (category) {
+        filtered = filtered.filter(
+          (p) => p.category.toLowerCase() === category.toLowerCase()
+        );
+      }
+
+      if (sort) {
+        const dir = order === "desc" ? -1 : 1;
+        if (sort === "price") {
+          filtered.sort((a, b) => (a.price - b.price) * dir);
+        } else if (sort === "name") {
+          filtered.sort((a, b) => a.title.localeCompare(b.title) * dir);
+        }
+      }
+
+      onFilter(filtered);
+    },
+    [products, onFilter]
+  );
+
+  useEffect(() => {
+    applyFilters(searchTerm, categoryOption, sortOption, orderOption);
+  }, [searchTerm, categoryOption, sortOption, orderOption, applyFilters]);
+
+  const updateUrl = useCallback(
     (updates: Record<string, string>) => {
       const params = new URLSearchParams(searchParams.toString());
       Object.entries(updates).forEach(([key, value]) => {
-        if (value === "" || value === null) {
+        if (!value) {
           params.delete(key);
         } else {
           params.set(key, value);
         }
       });
       params.delete("page");
-      router.push(pathname + "?" + params.toString());
+      router.push(pathname + "?" + params.toString(), { scroll: false });
     },
     [searchParams, pathname, router]
   );
@@ -65,13 +108,13 @@ export default function ProductFilters() {
     setSearchTerm(value);
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      updateParams({ search: value });
+      updateUrl({ search: value });
     }, 400);
   };
 
   const clearSearch = () => {
     setSearchTerm("");
-    updateParams({ search: "" });
+    updateUrl({ search: "" });
   };
 
   const activeFilters =
@@ -90,7 +133,7 @@ export default function ProductFilters() {
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Buscar productos..."
-            className="w-full pl-12 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+            className="w-full pl-12 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#00703C] focus:ring-2 focus:ring-[#00703C]/10 transition-all"
           />
           {searchTerm && (
             <button
@@ -105,8 +148,8 @@ export default function ProductFilters() {
           onClick={() => setShowFilters(!showFilters)}
           className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
             showFilters || activeFilters
-              ? "bg-primary text-white border-primary"
-              : "bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary"
+              ? "bg-[#00703C] text-white border-[#00703C]"
+              : "bg-white text-gray-700 border-gray-200 hover:border-[#00703C] hover:text-[#00703C]"
           }`}
         >
           <SlidersHorizontal className="w-4 h-4" />
@@ -118,7 +161,6 @@ export default function ProductFilters() {
       {showFilters && (
         <div className="bg-white border border-gray-200 rounded-xl p-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Category */}
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 Categoria
@@ -127,9 +169,9 @@ export default function ProductFilters() {
                 value={categoryOption}
                 onChange={(e) => {
                   setCategoryOption(e.target.value);
-                  updateParams({ category: e.target.value });
+                  updateUrl({ category: e.target.value });
                 }}
-                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#00703C] transition-colors"
               >
                 {categoryOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -139,7 +181,6 @@ export default function ProductFilters() {
               </select>
             </div>
 
-            {/* Sort */}
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 Ordenar por
@@ -148,9 +189,9 @@ export default function ProductFilters() {
                 value={sortOption}
                 onChange={(e) => {
                   setSortOption(e.target.value);
-                  updateParams({ sort: e.target.value });
+                  updateUrl({ sort: e.target.value });
                 }}
-                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#00703C] transition-colors"
               >
                 {sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -160,7 +201,6 @@ export default function ProductFilters() {
               </select>
             </div>
 
-            {/* Order */}
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 Direccion
@@ -169,9 +209,9 @@ export default function ProductFilters() {
                 value={orderOption}
                 onChange={(e) => {
                   setOrderOption(e.target.value);
-                  updateParams({ order: e.target.value });
+                  updateUrl({ order: e.target.value });
                 }}
-                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#00703C] transition-colors"
               >
                 {orderOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -189,19 +229,22 @@ export default function ProductFilters() {
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs text-gray-500">Filtros activos:</span>
           {searchParams.get("search") && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#00703C]/10 text-[#00703C] text-xs font-medium rounded-full">
               {`"${searchParams.get("search")}"`}
-              <button onClick={clearSearch} className="hover:text-primary-dark">
+              <button onClick={clearSearch} className="hover:text-[#005a30]">
                 <X className="w-3 h-3" />
               </button>
             </span>
           )}
           {searchParams.get("category") && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#00703C]/10 text-[#00703C] text-xs font-medium rounded-full">
               {searchParams.get("category")}
               <button
-                onClick={() => updateParams({ category: "" })}
-                className="hover:text-primary-dark"
+                onClick={() => {
+                  setCategoryOption("");
+                  updateUrl({ category: "" });
+                }}
+                className="hover:text-[#005a30]"
               >
                 <X className="w-3 h-3" />
               </button>
