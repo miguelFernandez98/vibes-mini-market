@@ -1,4 +1,4 @@
-import { getProductById, getProducts } from "@/lib/products-api";
+import { getProductById } from "@/lib/products-api";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,13 +12,6 @@ import {
   RotateCcw,
   ChevronRight,
 } from "lucide-react";
-
-export async function generateStaticParams() {
-  const products = await getProducts();
-  return products.map((product) => ({
-    id: String(product.id),
-  }));
-}
 
 interface ProductDetailPageProps {
   params: Promise<{ id: string }>;
