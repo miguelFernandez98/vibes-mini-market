@@ -11,7 +11,7 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import { Product } from "../../shared/interfaces/products";
+import { Product } from "@/types/products";
 
 const features = [
   {

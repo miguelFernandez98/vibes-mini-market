@@ -1,4 +1,4 @@
-import { Product } from "../../shared/interfaces/products";
+import { Product } from "@/types/products";
 
 const FAKESTORE_API = "https://fakestoreapi.com";
 

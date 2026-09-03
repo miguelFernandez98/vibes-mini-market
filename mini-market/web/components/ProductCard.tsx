@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Star, ShoppingCart } from "lucide-react";
-import { Product } from "../../shared/interfaces/products";
+import { Product } from "@/types/products";
 
 interface ProductCardProps {
   product: Product;
