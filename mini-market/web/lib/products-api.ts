@@ -1,23 +1,45 @@
 import { Product } from "../../shared/interfaces/products";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API;
+const FAKESTORE_API = "https://fakestoreapi.com";
 
-export const getProducts = async (query?: string): Promise<Product[]> => {
+export const getProducts = async (): Promise<Product[]> => {
   try {
-    const res = await fetch(
-      `${API_BASE_URL}/api/products${query ? `?${query}` : ""}`
-    );
+    const res = await fetch(`${FAKESTORE_API}/products`);
     if (!res.ok) return [];
-    const data = await res.json();
-    return data.products;
-  } catch (err) {
+    const data: Product[] = await res.json();
+    return data;
+  } catch {
     return [];
   }
 };
 
 export const getProductById = async (id: string): Promise<Product> => {
-  const res = await fetch(`${API_BASE_URL}/api/products/${id}`);
+  const res = await fetch(`${FAKESTORE_API}/products/${id}`);
   if (!res.ok) throw new Error("Failed to fetch product");
-  const data = await res.json();
+  const data: Product = await res.json();
   return data;
+};
+
+export const getCategories = async (): Promise<string[]> => {
+  try {
+    const res = await fetch(`${FAKESTORE_API}/products/categories`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+};
+
+export const getProductsByCategory = async (
+  category: string
+): Promise<Product[]> => {
+  try {
+    const res = await fetch(
+      `${FAKESTORE_API}/products/category/${category}`
+    );
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
 };
